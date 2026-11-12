@@ -1,0 +1,24 @@
+{
+  "name": "@local/bnu-course-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BNU 教育技术课件工作流的最小闭环：概念三分类 + 报告渲染。",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "index.js",
+    "lib/*.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg"
+  ]
+}

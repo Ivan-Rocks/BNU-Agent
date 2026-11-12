@@ -1,0 +1,94 @@
+# =============================================================================
+# BNU Course Agent — .gitignore
+#
+# 原则：源数据与可执行代码入库；由它们派生、可随时重新生成的大文件不入库。
+#   入库：知识库 md、inventory、reports、courses、docs 源文件、bundle 代码、
+#         raw-sources 里的课标 PDF 与 OCR 文本
+#   不入库：渲染出来的预览图、依赖目录、编辑器/系统垃圾、密钥
+# =============================================================================
+
+# --- 渲染预览产物（office-render / PDF 排版检查生成，可重跑） ----------------
+# 只忽略预览目录里的图片，保留 .pdf-preview/print-fix.css 这类手写微调
+**/.pdf-preview/**/*.png
+**/.pdf-preview/**/*.jpg
+**/.pdf-preview/**/*.jpeg
+**/.pdf-preview/**/*.webp
+**/.pdf-preview/**/*.pdf
+
+# 其他常见的临时渲染输出
+*.preview.html
+*.preview.pdf
+render-out/
+tmp-render/
+
+# --- raw-sources：课标 PDF 的逐页光栅图（OCR 中间产物，可由 PDF 重新转出） ----
+# 约 36 MB / 74 张，去掉后仓库体积减半；OCA 文本结果 ict_ocr.txt 仍然入库
+raw-sources/ict_pages/
+
+# --- 依赖与构建产物 ----------------------------------------------------------
+node_modules/
+.pnpm-store/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# --- Python（office 相关脚本与 Notebook 常用） -------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+.ipynb_checkpoints/
+
+# --- 系统与编辑器 ------------------------------------------------------------
+.DS_Store
+.AppleDouble
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+*~
+
+# --- Office / 编辑器临时锁文件 ----------------------------------------------
+~$*
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+
+# --- 本地配置与密钥（不要提交任何凭证） -------------------------------------
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# =============================================================================
+# 可选：把「由 md 派生的 PDF / DOCX 成品」也排除出仓库
+# 需要让导师收到的成品也进 git 时，保持注释即可；想只存 md 时取消注释。
+# -----------------------------------------------------------------------------
+# docs/**/*.pdf
+# docs/**/*.docx
+# *.pdf

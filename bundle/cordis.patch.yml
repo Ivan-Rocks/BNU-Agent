@@ -1,0 +1,6 @@
+- insert:
+    - id: bnu-course-agent
+      name: '@local/bnu-course-agent'
+      config:
+        dataDir: C:/Work/BNU-Agent/knowledge-base
+        reportDir: C:/Work/BNU-Agent/reports
